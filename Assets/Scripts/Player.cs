@@ -42,11 +42,11 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
 
         if(Input.GetKey(KeyCode.LeftShift) && dashTime <= 0)
@@ -87,4 +87,10 @@ public class Player : MonoBehaviour
             animator.SetBool("isWalk", true);
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "monster")
+            gameObject.SetActive(false);
+    }
 }
+
