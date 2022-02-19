@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public float defaultTime;
     private float dashTime;
     private bool isDash;
-    private float runSpeed;
+
+    public GameObject ballObj;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,45 +26,34 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerSpeed = 5.0f;
-        runSpeed = 1.0f;
         isDash = false;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-
-        rigid.velocity = new Vector2(h * playerSpeed * runSpeed, v * playerSpeed * runSpeed);
-    }
-
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftArrow))
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            spriteRenderer.flipX = true;
-        }
+        Move();
 
-        if(Input.GetKey(KeyCode.LeftShift) && dashTime <= 0)
-        {
-            runSpeed = 1.5f;
-        }
-        else
-        {
-            runSpeed = 1.0f;
-        }
+        Dash();
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        Render();
+
+        Attack();
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "monster")
+            gameObject.SetActive(false);
+    }
+
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             isDash = true;
         }
 
-        if(dashTime <= 0)
+        if (dashTime <= 0)
         {
             playerSpeed = 5.0f;
             if (isDash)
@@ -77,8 +67,28 @@ public class Player : MonoBehaviour
             dashTime -= Time.deltaTime;
             playerSpeed = dashSpeed;
         }
+    }
 
-        if(rigid.velocity.x == 0.0f && rigid.velocity.y == 0.0f)
+    void Move()
+    {
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        rigid.velocity = new Vector2(h * playerSpeed, v * playerSpeed);
+    }
+
+    void Render()
+    {
+        if (rigid.velocity.x < 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (rigid.velocity.x > 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        if (rigid.velocity.x == 0.0f && rigid.velocity.y == 0.0f)
         {
             animator.SetBool("isWalk", false);
         }
@@ -87,10 +97,39 @@ public class Player : MonoBehaviour
             animator.SetBool("isWalk", true);
         }
     }
-    void OnTriggerEnter2D(Collider2D collision)
+
+    void Attack()
     {
-        if (collision.tag == "monster")
-            gameObject.SetActive(false);
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("monster");
+
+            if (objects.Length > 0)
+            {
+                float shortDis = Vector3.Distance(transform.position, objects[0].transform.position);
+                GameObject monster = objects[0];
+
+                foreach (GameObject obj in objects)
+                {
+                    float dist = Vector3.Distance(transform.position, obj.transform.position);
+
+                    if (dist < shortDis)
+                    {
+                        shortDis = dist;
+                        monster = obj;
+                    }
+                }
+
+                Debug.Log(monster.gameObject.name);
+
+                Vector2 attackVec = new Vector2(monster.transform.position.x - transform.position.x,
+                    monster.transform.position.y - transform.position.y);
+
+                GameObject ball = Instantiate(ballObj, transform.position, transform.rotation);
+                Rigidbody2D ballRigid = ball.GetComponent<Rigidbody2D>();
+                ballRigid.AddForce(attackVec * 5, ForceMode2D.Impulse);
+            }
+        }
     }
 }
 
