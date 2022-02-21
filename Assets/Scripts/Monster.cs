@@ -26,33 +26,32 @@ public class Monster : MonoBehaviour
         else if (rb.position.x < target.position.x)
             sr.flipX = false;
     }
-
+    
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "monster")
+        if (collision.gameObject.tag == "monster" && rb)
             rb.velocity = new Vector2(0, 0);
     }
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Ball")
+        if(collision.tag == "Ball" && rb)
         {
             Vector2 reactVec = transform.position - collision.transform.position;
-            StartCoroutine(OnDamage(reactVec));
-        } 
-        else if(collision.tag == "Ball2")
+            StartCoroutine(OnDamage(reactVec, 30.0f));
+        }
+
+        if (collision.tag == "Ball2" && rb)
         {
             Vector2 reactVec = transform.position - target.position;
-            StartCoroutine(OnDamage(reactVec));
+            StartCoroutine(OnDamage(reactVec, 50.0f));
         }
     }
-    IEnumerator OnDamage(Vector2 reactVec)
+    IEnumerator OnDamage(Vector2 reactVec, float power)
     {
         reactVec = reactVec.normalized;
-        rb.AddForce(reactVec * 3, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.1f);
+        rb.velocity = reactVec * power;
+        yield return new WaitForSeconds(0.2f);
         rb.velocity = new Vector2(0,0);
-        
-
-
     }
 }
