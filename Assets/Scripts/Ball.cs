@@ -10,5 +10,9 @@ public class Ball : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(collision.tag == "monster")
+        {
+            Destroy(gameObject);
+        }
     }
 }
