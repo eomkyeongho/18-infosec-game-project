@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: monster
+  m_Name: BeenMove
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 8a042eb25410b854f95a5354e37c51b9, type: 3}
+      value: {fileID: 21300000, guid: 48bf341b98843b64ab15dc43fe3d33da, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 3dac6dd4419584f45a981cdefb8bae62, type: 3}
+      value: {fileID: 21300000, guid: ce081c120caa8384781c4bd05f1a4c21, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 8a042eb25410b854f95a5354e37c51b9, type: 3}
-    - {fileID: 21300000, guid: 3dac6dd4419584f45a981cdefb8bae62, type: 3}
+    - {fileID: 21300000, guid: 48bf341b98843b64ab15dc43fe3d33da, type: 3}
+    - {fileID: 21300000, guid: ce081c120caa8384781c4bd05f1a4c21, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
