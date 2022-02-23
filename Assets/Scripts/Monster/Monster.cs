@@ -9,6 +9,11 @@ public class Monster : MonoBehaviour
     SpriteRenderer sprite;
     BoxCollider2D boxCollider;
     bool isDamaged;
+    
+    void Start()
+    {
+
+    }
 
     public void init(GameObject obj)
     {

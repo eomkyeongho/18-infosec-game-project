@@ -13,7 +13,7 @@ public class Slime : Monster
     void Start()
     {
         m_Monster = GetComponent<Monster>();
-        m_Monster.init(gameObject);
+        m_Monster.init(gameObject);   
     }
 
     // Update is called once per frame
@@ -24,9 +24,9 @@ public class Slime : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="Ball2")
+        if(collision.tag== "Ball2" || collision.tag == "Ball")
         {
-            m_Monster.KnowBackAwayFromPlayer(gameObject, collision, 5.0f, 0.4f);
+            m_Monster.KnowBackAwayFromPlayer(gameObject, collision, 2.0f, 0.4f);
         }
     }
 }
