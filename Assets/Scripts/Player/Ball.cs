@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowFireBall : MonoBehaviour
+public class Ball : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,7 +10,7 @@ public class ThrowFireBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(collision.tag == "Monster")
+        if(collision.tag == "monster")
         {
             Destroy(gameObject);
         }

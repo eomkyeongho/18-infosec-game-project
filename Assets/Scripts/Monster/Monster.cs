@@ -33,70 +33,30 @@ public class Monster : MonoBehaviour
         else if (rigid.position.x < target.position.x)
             sprite.flipX = false;
     }
-
-    void Update()
-    {
-        // Player 넉백 구현 장소
-    }
-
-    void KnowBackPlayer(Collider2D collision, float power, float durationTime)
+    
+    public void KnowBackAwayFromMaterial(Collider2D collision, float power, float durationTime)
     {
         Vector2 reactVec = transform.position - collision.transform.position;
         StartCoroutine(OnDamage(reactVec, power, durationTime));
-        StartCoroutine(OnDamageEffect(0.01f));
     }
 
-    void KnowBackAwayFromMaterial(Collider2D collision, float power, float durationTime)
-    {
-        Vector2 reactVec = transform.position - collision.transform.position;
-        StartCoroutine(OnDamage(reactVec, power, durationTime));
-        StartCoroutine(OnDamageEffect(0.01f));
-    }
-
-    void KnowBackAwayFromMaterial(GameObject obj, Collider2D collision, float power, float durationTime)
+    public void KnowBackAwayFromMaterial(GameObject obj, Collider2D collision, float power, float durationTime)
     {
         Vector2 reactVec = transform.position - collision.transform.position;
         StartCoroutine(OnDamage(obj, reactVec, power, durationTime));
     }
 
-    void KnowBackAwayFromPlayer(Collider2D collision, float power, float durationTime)
+    public void KnowBackAwayFromPlayer(Collider2D collision, float power, float durationTime)
     {
         Vector2 reactVec = transform.position - target.position;
         StartCoroutine(OnDamage(reactVec, power, durationTime));
-        StartCoroutine(OnDamageEffect(0.01f));
+        StartCoroutine(OnDamageEffect());
     }
 
-    void KnowBackAwayFromPlayer(GameObject obj, Collider2D collision, float power, float durationTime)
+    public void KnowBackAwayFromPlayer(GameObject obj, Collider2D collision, float power, float durationTime)
     {
         Vector2 reactVec = transform.position - target.position;
         StartCoroutine(OnDamage(obj, reactVec, power, durationTime));
-    }
-
-    public void GetDamaged(Collider2D collision, float power, float durationTime, GameObject obj = null)
-    {
-        if (collision.tag == "Player" || collision.tag == "Monster") return;
-        if(obj)
-        {
-            if (collision.tag == "FireBall")
-            {
-                KnowBackAwayFromPlayer(obj, collision, power, durationTime);
-            }
-            else
-            {
-                KnowBackAwayFromMaterial(obj, collision, power, durationTime);
-            }
-        }
-        else
-        {
-            if (collision.tag == "FireBall")
-            {
-                KnowBackAwayFromPlayer(collision, power, durationTime);
-            }
-            else
-            {
-                KnowBackAwayFromMaterial(collision, power, durationTime);
-            }
-        }
     }
 
     IEnumerator OnDamage(Vector2 reactVec, float power, float durationTime)
@@ -121,8 +81,10 @@ public class Monster : MonoBehaviour
         obj.GetComponent<Animator>().SetBool("Damaged", false);
     }
 
-    public IEnumerator OnDamageEffect(float durationTime)
+    public IEnumerator OnDamageEffect()
     {
+        float durationTime = 0.01f;
+
         while (durationTime > 0)
         {
             sprite.color = Color.red;
