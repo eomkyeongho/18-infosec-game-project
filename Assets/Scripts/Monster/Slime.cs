@@ -24,9 +24,13 @@ public class Slime : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+<<<<<<< HEAD
         if(collision.tag== "Ball2" || collision.tag == "Ball")
         {
             m_Monster.KnowBackAwayFromPlayer(gameObject, collision, 2.0f, 0.4f);
         }
+=======
+        m_Monster.GetDamaged(collision, 5.0f, 0.4f, gameObject);
+>>>>>>> aee8a0cabda055fe175c2ab0347820dab6d8da0a
     }
 }

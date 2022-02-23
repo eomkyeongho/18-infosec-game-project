@@ -10,9 +10,9 @@ public class Player : MonoBehaviour
 
     private float playerSpeed;
     public float dashSpeed;
-    public float defaultTime;
+    public float dashDuration;
     private float dashTime;
-    private bool isDash;
+    private bool isDash, isDashCool, isFireBallCool;
 
     public GameObject ballObj;
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerSpeed = 5.0f;
-        isDash = false;
+        isDash = isDashCool = isFireBallCool = false;
     }
 
     // Update is called once per frame
@@ -38,27 +38,32 @@ public class Player : MonoBehaviour
 
         Render();
 
+<<<<<<< HEAD
         Attack();
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "monster")
             gameObject.SetActive(false);
+=======
+        FireBallNearestMonster();
+>>>>>>> aee8a0cabda055fe175c2ab0347820dab6d8da0a
     }
 
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashCool)
         {
             isDash = true;
+            StartCoroutine(DashCoolDown());
         }
 
-        if (dashTime <= 0)
+        if (dashTime < 0)
         {
             playerSpeed = 5.0f;
             if (isDash)
             {
-                dashTime = defaultTime;
+                dashTime = dashDuration;
                 isDash = false;
             }
         }
@@ -98,16 +103,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Attack()
+    void FireBallNearestMonster()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl) && !isFireBallCool)
         {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag("monster");
+            StartCoroutine(FireBallCoolDown());
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("Monster");
 
             if (objects.Length > 0)
             {
                 float shortDis = Vector3.Distance(transform.position, objects[0].transform.position);
-                GameObject monster = objects[0];
+                GameObject Monster = objects[0];
 
                 foreach (GameObject obj in objects)
                 {
@@ -116,20 +122,31 @@ public class Player : MonoBehaviour
                     if (dist < shortDis)
                     {
                         shortDis = dist;
-                        monster = obj;
+                        Monster = obj;
                     }
                 }
 
-                Debug.Log(monster.gameObject.name);
-
-                Vector2 attackVec = new Vector2(monster.transform.position.x - transform.position.x,
-                    monster.transform.position.y - transform.position.y);
+                Vector2 attackVec = new Vector2(Monster.transform.position.x - transform.position.x,
+                    Monster.transform.position.y - transform.position.y);
 
                 GameObject ball = Instantiate(ballObj, transform.position, transform.rotation);
                 Rigidbody2D ballRigid = ball.GetComponent<Rigidbody2D>();
                 ballRigid.AddForce(attackVec * 5, ForceMode2D.Impulse);
             }
         }
+    }
+
+    IEnumerator DashCoolDown()
+    {
+        isDashCool = true;
+        yield return new WaitForSeconds(1.0f);
+        isDashCool = false;
+    }
+    IEnumerator FireBallCoolDown()
+    {
+        isFireBallCool = true;
+        yield return new WaitForSeconds(0.5f);
+        isFireBallCool = false;
     }
 }
 
