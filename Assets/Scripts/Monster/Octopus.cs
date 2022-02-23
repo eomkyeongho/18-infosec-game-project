@@ -24,9 +24,6 @@ public class Octopus : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="Ball2")
-        {
-            m_Monster.KnowBackAwayFromPlayer(collision, 5.0f, 0.4f);
-        }
+        m_Monster.GetDamaged(collision, 5.0f, 0.4f);
     }
 }
