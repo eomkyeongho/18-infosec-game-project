@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateFireBall : MonoBehaviour
+public class Attack : MonoBehaviour
 {
 
     //[Header("속도, 반지름")]
@@ -28,9 +28,12 @@ public class RotateFireBall : MonoBehaviour
         transform.position = target.position + offset;
         transform.RotateAround(target.position, target.forward, 20 * speed * Time.deltaTime);
         offset = transform.position - target.position;
+        //Debug.Log(transform.rotation);
+
     }
     void cool()
     {
+
         if (gameObject.activeSelf == true)
         {
             gameObject.SetActive(false);
