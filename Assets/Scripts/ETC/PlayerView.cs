@@ -14,4 +14,12 @@ public class PlayerView : MonoBehaviour
         Vector2 moveVector = new Vector2(dir.x * cameraSpeed * Time.deltaTime, dir.y * cameraSpeed * Time.deltaTime);
         this.transform.Translate(moveVector);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "MapBorder" && collision.name == "Left")
+        {
+            transform.position = new Vector2(collision.transform.position.x + 8.5f, transform.position.y);
+        }
+    }
 }

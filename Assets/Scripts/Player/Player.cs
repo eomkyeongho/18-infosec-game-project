@@ -14,8 +14,9 @@ public class Player : MonoBehaviour
     public float dashDuration;
     private float dashTime;
     private bool isDash, isDashCool, isFireBallCool;
-    public int fullHp;
-    private int currentHp;
+    public float fullHp;
+    public float attackDamage;
+    private float currentHp;
     bool isDamaged;
     bool isKnockBack;
 
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Damaged(int damage, Transform target)
+    public void Damaged(float damage, Transform target)
     {
         if (!isDamaged)
         { 

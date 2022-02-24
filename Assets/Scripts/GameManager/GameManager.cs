@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     GameObject monster;
+    public GameObject[] monsterList;
     SpriteRenderer monsterColor;
     GameObject player;
     // Start is called before the first frame update
@@ -20,27 +21,10 @@ public class GameManager : MonoBehaviour
         Vector3 distance = new Vector3(7.5f,7.5f,0f);
         Vector3 destination = randomRotate * distance + player.transform.position;
         int randomMonster = Random.Range(0, 3);
-        Debug.Log(randomMonster);
-        switch (randomMonster)
-        {
-            case 0:
-                monster = Instantiate(GameObject.Find("Octopus"), destination, Quaternion.identity);
-                monsterColor = monster.GetComponent<SpriteRenderer>();
-                monsterColor.color = Color.white;
-                break;
-            case 1:
-                monster = Instantiate(GameObject.Find("BeenMonster"), destination, Quaternion.identity);
-                monsterColor = monster.GetComponent<SpriteRenderer>();
-                monsterColor.color = Color.white;
-                break;
-            case 2:
-                monster = Instantiate(GameObject.Find("Slime"), destination, Quaternion.Euler(0, 180.0f, 0));
-                monsterColor = monster.GetComponent<SpriteRenderer>();
-                monsterColor.color = Color.white;
-                break;
-            default: break;
 
-        }
+        monster = Instantiate(monsterList[randomMonster], destination, monsterList[randomMonster].transform.rotation);
+        monsterColor = monster.GetComponent<SpriteRenderer>();
+        monsterColor.color = Color.white;
 
         Invoke("GenerateRandomMonster", 3);
     }

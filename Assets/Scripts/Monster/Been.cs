@@ -10,7 +10,7 @@ public class Been : Monster
     void Start()
     {
         m_Monster = GetComponent<Monster>();
-        m_Monster.init(gameObject, 3.0f, 3);
+        m_Monster.init(gameObject, 3.0f, 3, 30f);
     }
 
     // Update is called once per frame

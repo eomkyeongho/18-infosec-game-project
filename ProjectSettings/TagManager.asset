@@ -9,6 +9,7 @@ TagManager:
   - FireBall
   - ThrowFireBall
   - Ball
+  - MapBorder
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,9 @@ public class Monster : MonoBehaviour
     bool isDamaged;
     int attackDamage;
     float moveSpeed;
+    float hp;
 
-    public void init(GameObject obj, float speed, int damge)
+    public void init(GameObject obj, float speed, int damge, float monsterHP)
     {
         rigid = obj.GetComponent<Rigidbody2D>();
         sprite = obj.GetComponent<SpriteRenderer>();
@@ -21,6 +22,7 @@ public class Monster : MonoBehaviour
         isDamaged = false;
         moveSpeed = speed;
         attackDamage = damge;
+        hp = monsterHP;
     }
     public void Move()
     {
