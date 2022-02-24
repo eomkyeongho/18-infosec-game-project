@@ -39,7 +39,7 @@ public class Monster : MonoBehaviour
     {
         if(collision.tag=="Player")
         {
-            collision.GetComponent<Player>().Damaged(attackDamage, gameObject.transform);
+            collision.GetComponent<Player>().Damaged(attackDamage);
         }
     }
 

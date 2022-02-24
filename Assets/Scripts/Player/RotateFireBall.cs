@@ -31,7 +31,6 @@ public class RotateFireBall : MonoBehaviour
     {
         angle += rotateSpeed * Time.deltaTime % (2 * Mathf.PI);
         transform.position = new Vector2(target.position.x + 2.5f * Mathf.Sin(angle), target.position.y + 2.5f * Mathf.Cos(angle));
-        Debug.Log(damage);
     }
     void cool()
     {

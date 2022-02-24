@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public float attackDamage;
     private float currentHp;
     bool isDamaged;
-    bool isKnockBack;
+    bool isStop;
 
     public GameObject ballObj;
     public GameObject hpBar;
@@ -31,13 +31,13 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         playerSpeed = 5.0f;
         currentHp = fullHp;
-        isKnockBack = isDamaged = isDash = isDashCool = isFireBallCool = false;
+        isStop = isDamaged = isDash = isDashCool = isFireBallCool = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isKnockBack)
+        if (!isStop)
         {
             Move();
 
@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
             Render();
         }
+
 
         FireBallNearestMonster();
 
@@ -84,6 +85,24 @@ public class Player : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         rigid.velocity = new Vector2(h * playerSpeed, v * playerSpeed);
+
+        if(transform.position.x <= -12)
+        {
+            transform.position = new Vector2(-12, transform.position.y);
+        }
+        else if (transform.position.x >= 72)
+        {
+            transform.position = new Vector2(72, transform.position.y);
+        }
+
+        if (transform.position.y <= -32.0f)
+        {
+            transform.position = new Vector3(transform.position.x, -32.0f, 0);
+        }
+        else if (transform.position.y >= 32.0f)
+        {
+            transform.position = new Vector3(transform.position.x, 32.0f, 0);
+        }
     }
 
     void Render()
@@ -143,20 +162,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Damaged(float damage, Transform target)
+    public void Damaged(float damage)
     {
         if (!isDamaged)
         { 
             currentHp -= damage;
             Debug.Log("player hp : " + currentHp + "/" + fullHp);
             StartCoroutine(DamagedCoolDown());
-            StartCoroutine(KnockBackCoolDown());
-            Vector2 reactVec = new Vector2(gameObject.transform.position.x - target.position.x,
-                gameObject.transform.position.y - target.position.y);
-            reactVec.Normalize();
-            rigid.velocity = reactVec * 10;
         }
-
     }
 
     IEnumerator DashCoolDown()
@@ -174,17 +187,15 @@ public class Player : MonoBehaviour
     IEnumerator DamagedCoolDown()
     {
         isDamaged = true;
-        yield return new WaitForSeconds(1.0f);
-        isDamaged = false;  
-    }
-    IEnumerator KnockBackCoolDown()
-    {
         spriteRenderer.color = Color.red;
-        isKnockBack = true;
-        yield return new WaitForSeconds(0.3f);
-        isKnockBack = false;
+        isStop = true;
         rigid.velocity = Vector2.zero;
+        yield return new WaitForSeconds(0.1f);
+        isStop = false;
+        yield return new WaitForSeconds(0.2f);
         spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.7f);
+        isDamaged = false;  
     }
 }
 

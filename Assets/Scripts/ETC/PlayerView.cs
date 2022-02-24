@@ -13,13 +13,23 @@ public class PlayerView : MonoBehaviour
         Vector2 dir = player.transform.position - this.transform.position;
         Vector2 moveVector = new Vector2(dir.x * cameraSpeed * Time.deltaTime, dir.y * cameraSpeed * Time.deltaTime);
         this.transform.Translate(moveVector);
-    }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "MapBorder" && collision.name == "Left")
+        if(transform.position.x<=-5f)
         {
-            transform.position = new Vector2(collision.transform.position.x + 8.5f, transform.position.y);
+            transform.position = new Vector3(-5f, transform.position.y, -10);
+        }
+        else if (transform.position.x >= 75f)
+        {
+            transform.position = new Vector3(75.0f, transform.position.y, -10);
+        }
+
+        if (transform.position.y <= -30.0f)
+        {
+            transform.position = new Vector3(transform.position.x, -30.0f, - 10);
+        }
+        else if (transform.position.y >= 30.0f)
+        {
+            transform.position = new Vector3(transform.position.x, 30.0f, -10);
         }
     }
 }
