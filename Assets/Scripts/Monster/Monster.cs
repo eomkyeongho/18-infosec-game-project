@@ -9,16 +9,20 @@ public class Monster : MonoBehaviour
     SpriteRenderer sprite;
     BoxCollider2D boxCollider;
     bool isDamaged;
+    int attackDamage;
+    float moveSpeed;
 
-    public void init(GameObject obj)
+    public void init(GameObject obj, float speed, int damge)
     {
         rigid = obj.GetComponent<Rigidbody2D>();
         sprite = obj.GetComponent<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         boxCollider = obj.GetComponent<BoxCollider2D>();
         isDamaged = false;
+        moveSpeed = speed;
+        attackDamage = damge;
     }
-    public void Move(float moveSpeed)
+    public void Move()
     {
         if(!isDamaged)
             transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
@@ -29,9 +33,12 @@ public class Monster : MonoBehaviour
             sprite.flipX = false;
     }
 
-    void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        // Player 넉백 구현 장소
+        if(collision.tag=="Player")
+        {
+            collision.GetComponent<Player>().Damaged(attackDamage, gameObject.transform);
+        }
     }
 
     void KnowBackPlayer(Collider2D collision, float power, float durationTime)

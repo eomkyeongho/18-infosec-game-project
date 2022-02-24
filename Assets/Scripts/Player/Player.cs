@@ -8,37 +8,49 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+
     private float playerSpeed;
     public float dashSpeed;
     public float dashDuration;
     private float dashTime;
     private bool isDash, isDashCool, isFireBallCool;
+    public int fullHp;
+    private int currentHp;
+    bool isDamaged;
+    bool isKnockBack;
 
     public GameObject ballObj;
+    public GameObject hpBar;
     // Start is called before the first frame update
-    void Awake()
+
+    void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-    }
-
-    void Start()
-    {
         playerSpeed = 5.0f;
-        isDash = isDashCool = isFireBallCool = false;
+        currentHp = fullHp;
+        isKnockBack = isDamaged = isDash = isDashCool = isFireBallCool = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (!isKnockBack)
+        {
+            Move();
 
-        Dash();
+            Dash();
 
-        Render();
+            Render();
+        }
 
         FireBallNearestMonster();
+
+        if(currentHp<=0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     void Dash()
@@ -92,6 +104,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isWalk", true);
         }
+        hpBar.transform.localScale = new Vector3((float)currentHp / (float)fullHp, 0.15f, 1.0f);
     }
 
     void FireBallNearestMonster()
@@ -120,11 +133,29 @@ public class Player : MonoBehaviour
                 Vector2 attackVec = new Vector2(Monster.transform.position.x - transform.position.x,
                     Monster.transform.position.y - transform.position.y);
 
+                attackVec.Normalize();
+
                 GameObject ball = Instantiate(ballObj, transform.position, transform.rotation);
                 Rigidbody2D ballRigid = ball.GetComponent<Rigidbody2D>();
-                ballRigid.AddForce(attackVec * 5, ForceMode2D.Impulse);
+                ballRigid.AddForce(attackVec * 20, ForceMode2D.Impulse);
             }
         }
+    }
+
+    public void Damaged(int damage, Transform target)
+    {
+        if (!isDamaged)
+        { 
+            currentHp -= damage;
+            Debug.Log("player hp : " + currentHp + "/" + fullHp);
+            StartCoroutine(DamagedCoolDown());
+            StartCoroutine(KnockBackCoolDown());
+            Vector2 reactVec = new Vector2(gameObject.transform.position.x - target.position.x,
+                gameObject.transform.position.y - target.position.y);
+            reactVec.Normalize();
+            rigid.velocity = reactVec * 10;
+        }
+
     }
 
     IEnumerator DashCoolDown()
@@ -138,6 +169,21 @@ public class Player : MonoBehaviour
         isFireBallCool = true;
         yield return new WaitForSeconds(0.5f);
         isFireBallCool = false;
+    }
+    IEnumerator DamagedCoolDown()
+    {
+        isDamaged = true;
+        yield return new WaitForSeconds(1.0f);
+        isDamaged = false;  
+    }
+    IEnumerator KnockBackCoolDown()
+    {
+        spriteRenderer.color = Color.red;
+        isKnockBack = true;
+        yield return new WaitForSeconds(0.3f);
+        isKnockBack = false;
+        rigid.velocity = Vector2.zero;
+        spriteRenderer.color = Color.white;
     }
 }
 

@@ -13,13 +13,13 @@ public class Slime : Monster
     void Start()
     {
         m_Monster = GetComponent<Monster>();
-        m_Monster.init(gameObject);
+        m_Monster.init(gameObject, 3.0f, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_Monster.Move(moveSpeed);
+        m_Monster.Move();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
