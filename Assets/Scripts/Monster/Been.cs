@@ -24,6 +24,9 @@ public class Been : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        m_Monster.GetDamaged(collision, 5.0f, 0.4f);
+        if(collision.tag== "Ball2" || collision.tag == "Ball")
+        {
+            m_Monster.KnowBackAwayFromPlayer(collision, 4.0f, 0.4f);
+        }
     }
 }
