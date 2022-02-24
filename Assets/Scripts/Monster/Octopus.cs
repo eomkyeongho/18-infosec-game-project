@@ -24,6 +24,6 @@ public class Octopus : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        m_Monster.GetDamaged(collision, 5.0f, 0.4f);
+        m_Monster.GetDamaged(collision, 2.0f, 0.4f);
     }
 }

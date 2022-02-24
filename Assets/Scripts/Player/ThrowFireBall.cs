@@ -10,9 +10,11 @@ public class ThrowFireBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        /*
         if(collision.tag == "Monster")
         {
             Destroy(gameObject);
         }
+        */
     }
 }

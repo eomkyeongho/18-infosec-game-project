@@ -24,6 +24,6 @@ public class Slime : Monster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        m_Monster.GetDamaged(collision, 5.0f, 0.4f, gameObject);
+        m_Monster.GetDamaged(collision, 1.0f, 0.4f, gameObject);
     }
 }

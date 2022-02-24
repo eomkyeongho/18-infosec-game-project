@@ -69,7 +69,7 @@ public class Monster : MonoBehaviour
 
     public void GetDamaged(Collider2D collision, float power, float durationTime, GameObject obj = null)
     {
-        if (collision.tag == "Player" || collision.tag == "Monster") return;
+        if (collision.tag == "Player" || collision.tag == "Monster" || collision.tag == "BorderBall") return;
         if(obj)
         {
             if (collision.tag == "FireBall")
