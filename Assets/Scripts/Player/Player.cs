@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     public GameObject ballObj;
     public GameObject hpBar;
+    public GameObject particle;
     // Start is called before the first frame update
 
     void Start()
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         playerSpeed = 5.0f;
         currentHp = fullHp;
         isStop = isDamaged = isDash = isDashCool = isFireBallCool = false;
+        particle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -175,7 +177,9 @@ public class Player : MonoBehaviour
     IEnumerator DashCoolDown()
     {
         isDashCool = true;
+        particle.SetActive(true);
         yield return new WaitForSeconds(1.0f);
+        particle.SetActive(false);
         isDashCool = false;
     }
     IEnumerator FireBallCoolDown()

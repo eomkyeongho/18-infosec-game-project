@@ -13,7 +13,7 @@ public class Slime : Monster
     void Start()
     {
         m_Monster = GetComponent<Monster>();
-        m_Monster.init(gameObject, 3.0f, 3, 30f);
+        m_Monster.init(3.0f, 3, 30f);
     }
 
     // Update is called once per frame

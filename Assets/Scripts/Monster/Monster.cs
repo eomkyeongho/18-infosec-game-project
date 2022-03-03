@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    Player player;
+    GameObject playerObj;
+
     Rigidbody2D rigid;
     Transform target;
     SpriteRenderer sprite;
@@ -13,16 +16,18 @@ public class Monster : MonoBehaviour
     float moveSpeed;
     float hp;
 
-    public void init(GameObject obj, float speed, int damge, float monsterHP)
+    public void init(float speed, int damge, float monsterHP)
     {
-        rigid = obj.GetComponent<Rigidbody2D>();
-        sprite = obj.GetComponent<SpriteRenderer>();
+        rigid = gameObject.GetComponent<Rigidbody2D>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        boxCollider = obj.GetComponent<BoxCollider2D>();
+        boxCollider = gameObject.GetComponent<BoxCollider2D>();
         isDamaged = false;
         moveSpeed = speed;
         attackDamage = damge;
         hp = monsterHP;
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        player = playerObj.GetComponent<Player>();
     }
     public void Move()
     {
@@ -79,6 +84,13 @@ public class Monster : MonoBehaviour
     public void GetDamaged(Collider2D collision, float power, float durationTime, GameObject obj = null)
     {
         if (collision.tag == "Player" || collision.tag == "Monster" || collision.tag == "BorderBall") return;
+
+        hp -= player.attackDamage;
+        if(hp<=0)
+        {
+            Destroy(gameObject);
+        }
+
         if(obj)
         {
             if (collision.tag == "FireBall")
