@@ -111,11 +111,11 @@ public class Player : MonoBehaviour
     {
         if (rigid.velocity.x < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
         else if (rigid.velocity.x > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
 
         if (rigid.velocity.x == 0.0f && rigid.velocity.y == 0.0f)
