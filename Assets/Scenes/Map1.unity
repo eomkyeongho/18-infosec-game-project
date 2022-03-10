@@ -63568,10 +63568,10 @@ GameObject:
   m_Component:
   - component: {fileID: 593104502}
   - component: {fileID: 593104501}
-  - component: {fileID: 593104500}
   - component: {fileID: 593104504}
   - component: {fileID: 593104503}
   - component: {fileID: 593104505}
+  - component: {fileID: 593104500}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
