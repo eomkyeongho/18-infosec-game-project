@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 7dd616b527c44e34d9d59d8e0a280b58
+guid: 2bea043cf43710b40bc2abe3520fe481
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1831003935200567176
-    second: arrow_final_0
+      213: -6671323076981297610
+    second: lightning-edgeline_curved_0
   - first:
-      213: 2645941042884234402
-    second: arrow_final_1
+      213: -6285145264632357122
+    second: lightning-edgeline_curved_1
   - first:
-      213: -2865186746229177951
-    second: arrow_final_2
+      213: -6668615711293260052
+    second: lightning-edgeline_curved_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,55 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_final_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88fd8f3c068096910800000000000000
-      internalID: 1831003935200567176
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_final_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2accdb51c5548b420800000000000000
-      internalID: 2645941042884234402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_final_2
+      name: lightning-edgeline_curved_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,8 +126,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a14adfa5dfcc38d0800000000000000
-      internalID: -2865186746229177951
+      spriteID: 63ee9a6f103ba63a0800000000000000
+      internalID: -6671323076981297610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning-edgeline_curved_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe1cd39eada6c8a0800000000000000
+      internalID: -6285145264632357122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightning-edgeline_curved_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceeb6c8a7515473a0800000000000000
+      internalID: -6668615711293260052
       vertices: []
       indices: 
       edges: []
