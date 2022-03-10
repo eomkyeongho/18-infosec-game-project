@@ -8,11 +8,21 @@ public class GameManager : MonoBehaviour
     public GameObject[] monsterList;
     SpriteRenderer monsterColor;
     GameObject player;
+    float delay;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Invoke("GenerateRandomMonster", 3);
+        delay = 3.0f;
+        Invoke("GenerateRandomMonster", delay);
+    }
+
+    void Update()
+    {
+        delay -= Time.deltaTime * 0.03f;
+        if (delay <= 1) delay = 1;
+        Debug.Log(delay + "초당 몬스터 1마리씩 소한 중");
     }
 
     void GenerateRandomMonster()
@@ -26,6 +36,6 @@ public class GameManager : MonoBehaviour
         monsterColor = monster.GetComponent<SpriteRenderer>();
         monsterColor.color = Color.white;
 
-        Invoke("GenerateRandomMonster", 3);
+        Invoke("GenerateRandomMonster", delay);
     }
 }
