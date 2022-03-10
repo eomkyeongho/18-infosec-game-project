@@ -159,8 +159,6 @@ public class Player : MonoBehaviour
 
                 float angle = Mathf.Atan2(attackVec.y, attackVec.x) * 57.2958f - 45.0f;
 
-                Debug.Log(attackVec.x + " " + attackVec.y + " " + angle);
-
                 GameObject ball = Instantiate(ballObj, new Vector3(transform.position.x + attackVec.x, transform.position.y + attackVec.y, transform.position.z), Quaternion.Euler(0.0f, 0.0f, angle));
                 Rigidbody2D ballRigid = ball.GetComponent<Rigidbody2D>();
                 ballRigid.AddForce(attackVec * 20, ForceMode2D.Impulse);
