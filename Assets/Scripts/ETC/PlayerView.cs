@@ -18,18 +18,18 @@ public class PlayerView : MonoBehaviour
         {
             transform.position = new Vector3(-5f, transform.position.y, -10);
         }
-        else if (transform.position.x >= 75f)
+        else if (transform.position.x >= 66.3f)
         {
-            transform.position = new Vector3(75.0f, transform.position.y, -10);
+            transform.position = new Vector3(66.3f, transform.position.y, -10);
         }
 
-        if (transform.position.y <= -30.0f)
+        if (transform.position.y <= -28.5f)
         {
-            transform.position = new Vector3(transform.position.x, -30.0f, - 10);
+            transform.position = new Vector3(transform.position.x, -28.5f, - 10);
         }
-        else if (transform.position.y >= 30.0f)
+        else if (transform.position.y >= 28.5f)
         {
-            transform.position = new Vector3(transform.position.x, 30.0f, -10);
+            transform.position = new Vector3(transform.position.x, 28.5f, -10);
         }
     }
 }

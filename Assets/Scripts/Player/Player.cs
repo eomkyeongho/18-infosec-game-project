@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("x : " + transform.position.x + " y : " + transform.position.y);
+
         if (!isStop)
         {
             Move();
@@ -88,22 +90,22 @@ public class Player : MonoBehaviour
 
         rigid.velocity = new Vector2(h * playerSpeed, v * playerSpeed);
 
-        if(transform.position.x <= -12)
+        if(transform.position.x <= -12.64)
         {
-            transform.position = new Vector2(-12, transform.position.y);
+            transform.position = new Vector2(-12.64f, transform.position.y);
         }
-        else if (transform.position.x >= 72)
+        else if (transform.position.x >= 73.95)
         {
-            transform.position = new Vector2(72, transform.position.y);
+            transform.position = new Vector2(73.95f, transform.position.y);
         }
 
-        if (transform.position.y <= -32.0f)
+        if (transform.position.y <= -32.1f)
         {
-            transform.position = new Vector3(transform.position.x, -32.0f, 0);
+            transform.position = new Vector3(transform.position.x, -32.1f, 0);
         }
-        else if (transform.position.y >= 32.0f)
+        else if (transform.position.y >= 32.1f)
         {
-            transform.position = new Vector3(transform.position.x, 32.0f, 0);
+            transform.position = new Vector3(transform.position.x, 32.1f, 0);
         }
     }
 
