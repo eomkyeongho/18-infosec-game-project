@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         delay -= Time.deltaTime * 0.03f;
         if (delay <= 1) delay = 1;
-        Debug.Log(delay + "초당 몬스터 1마리씩 소한 중");
+        //Debug.Log(delay + "초당 몬스터 1마리씩 소한 중");
         scriptText.text = enemyCount.ToString();
         gameTime += Time.deltaTime;
         if(Mathf.Round(gameTime) == 60)

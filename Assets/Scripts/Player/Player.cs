@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
+public class PlayerState
+{
+    public float playerAttackDamage;
+    public int money;
+}
 public class Player : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator animator;
 
-
-    private float playerSpeed;
     public float dashSpeed;
     public float dashDuration;
+    public float attackDamage;
+    public float fullHp;
+    private float playerSpeed;
     private float dashTime;
     private bool isDash, isDashCool, isFireBallCool;
-    public float fullHp;
-    public float attackDamage;
     private float currentHp;
     bool isDamaged;
     bool isStop;
@@ -34,6 +39,7 @@ public class Player : MonoBehaviour
         currentHp = fullHp;
         isStop = isDamaged = isDash = isDashCool = isFireBallCool = false;
         particle.SetActive(false);
+        Save();
     }
 
     // Update is called once per frame
@@ -55,6 +61,33 @@ public class Player : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+    void Save()
+    {
+        PlayerState myPlayerState = new PlayerState();
+
+        myPlayerState.playerAttackDamage = 5;
+        myPlayerState.money = 0;
+
+        string json = JsonUtility.ToJson(myPlayerState);
+        Debug.Log(json);
+
+        string fileName = "PlayerStat";
+        string path = Application.dataPath + "/save/" + fileName + ".Json";
+
+        File.WriteAllText(path, json);
+
+    }
+    void Load()
+    {
+        string fileName = "PlayerStat";
+        string path = Application.dataPath + "/save/" + fileName + ".Json";
+        string json = File.ReadAllText(path);
+
+        PlayerState myPlayerState = JsonUtility.FromJson<PlayerState>(json);
+
+        Debug.Log(myPlayerState.playerAttackDamage);
+        Debug.Log(myPlayerState.money);
     }
 
     void Dash()

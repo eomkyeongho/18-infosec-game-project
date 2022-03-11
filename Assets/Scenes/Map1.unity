@@ -63433,7 +63433,7 @@ MonoBehaviour:
   scriptText: {fileID: 0}
   textTimer: {fileID: 0}
   enemyCount: 0
-  limitTime: 0
+  gameTime: 0
 --- !u!114 &256802728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63735,12 +63735,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8601277097044951460, guid: c972ba5d647b36d42945147e05f3e969, type: 3}
+  m_Sprite: {fileID: -2954125074641724630, guid: 5130ea73cef8c9a4db4901f805630af1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.5, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -63802,8 +63802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashSpeed: 15
   dashDuration: 0.2
-  fullHp: 30
   attackDamage: 5
+  fullHp: 30
   ballObj: {fileID: 7563574026873609917, guid: d57bec64b21a996479046a8e88cb2be3, type: 3}
   hpBar: {fileID: 2140332189}
   particle: {fileID: 2055686479}
@@ -63824,8 +63824,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.6666666}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2.5, y: 1.25}
+    newSize: {x: 2.5, y: 1.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -64317,7 +64317,7 @@ MonoBehaviour:
   scriptText: {fileID: 1615079073}
   textTimer: {fileID: 256802728}
   enemyCount: 0
-  limitTime: 0
+  gameTime: 0
 --- !u!4 &1422309979
 Transform:
   m_ObjectHideFlags: 0
@@ -64386,7 +64386,7 @@ MonoBehaviour:
   scriptText: {fileID: 0}
   textTimer: {fileID: 0}
   enemyCount: 0
-  limitTime: 0
+  gameTime: 0
 --- !u!114 &1615079073
 MonoBehaviour:
   m_ObjectHideFlags: 0
