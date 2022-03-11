@@ -10,6 +10,7 @@ TagManager:
   - ThrowFireBall
   - Ball
   - MapBorder
+  - GM
   layers:
   - Default
   - TransparentFX

@@ -89,6 +89,7 @@ public class Monster : MonoBehaviour
         if(hp<=0)
         {
             Destroy(gameObject);
+            GameObject.FindWithTag("GM").GetComponent<GameManager>().CountKillMonster();
         }
 
         if(obj)
