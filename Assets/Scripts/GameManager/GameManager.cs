@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         Quaternion randomRotate = Quaternion.Euler(0f, 0f, Random.Range(-180f, 180f));
         Vector3 distance = new Vector3(7.5f,7.5f,0f);
         Vector3 destination = randomRotate * distance + player.transform.position;
-        int randomMonster = Random.Range(0, 3);
+        int randomMonster = Random.Range(0, monsterList.Length);
 
         monster = Instantiate(monsterList[randomMonster], destination, monsterList[randomMonster].transform.rotation);
         monsterColor = monster.GetComponent<SpriteRenderer>();

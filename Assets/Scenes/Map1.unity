@@ -64314,6 +64314,7 @@ MonoBehaviour:
   - {fileID: 6093105012050097047, guid: 05021baa7550f5f4fb79f8ce50ffa47d, type: 3}
   - {fileID: 2401890023245166689, guid: 82d52498b57e07a4b82a6bc5e8024ee5, type: 3}
   - {fileID: 7856606587700092297, guid: ccf55f7e1af7bcc4ca35e3f6b17d10d8, type: 3}
+  - {fileID: 8714524143145697439, guid: 8bba4bb5b301ac044af577fef83b5fac, type: 3}
   scriptText: {fileID: 1615079073}
   textTimer: {fileID: 256802728}
   enemyCount: 0
